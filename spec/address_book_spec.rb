@@ -49,15 +49,20 @@ describe(Contact) do
     end
   end
 
-  # describe("#find_phones") do
-  #   new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
-  #   new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
-  #   new_phone.save()
-  #   expect(new_contact.find_phones()).to(eq([new_phone]))
-  # end
+  describe("#find_phones") do
+    it("finds all phones in contact") do
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+      new_phone.save()
+      expect(new_contact.find_phones()).to(eq([new_phone]))
+    end
+  end
 end
 
 describe(Phone) do
+  before() do
+    Phone.clear()
+  end
 
   describe('#initialize') do
     it('creates a new phone number with proper parameters') do

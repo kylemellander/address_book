@@ -47,4 +47,8 @@ class Contact
     @@contacts = revised_contacts
   end
 
+  define_method(:find_phones) do
+    Phone.find_by_contact_id(@id)
+  end
+
 end
