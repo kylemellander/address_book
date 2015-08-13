@@ -92,4 +92,18 @@ describe(Phone) do
     end
   end
 
+  describe(".delete") do
+    it("deletes a specific phone number") do
+      new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+      new_phone.save()
+      Phone.delete(1)
+      expect(Phone.all()).to(eq([]))
+      new_phone.save()
+      new_phone2 = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+      new_phone2.save()
+      Phone.delete(2)
+      expect(Phone.all()).to(eq([new_phone]))        
+    end
+  end
+
 end

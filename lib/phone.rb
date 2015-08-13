@@ -35,4 +35,14 @@ class Phone
     found_phones
   end
 
+  define_singleton_method(:delete) do |id|
+    revised_phones = []
+    @@phones.each() do |phone|
+      if phone.id() != id
+        revised_phones.push(phone)
+      end
+    end
+    @@phones = revised_phones
+  end
+
 end
