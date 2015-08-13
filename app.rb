@@ -9,3 +9,13 @@ also_reload('lib/**/*.rb')
 get ('/') do
   erb(:index)
 end
+
+post ('/contact/new') do
+  @first_name = params.fetch("first_name")
+  @last_name = params.fetch("last_name")
+  @title = params.fetch("title")
+  @job_title = params.fetch("job_title")
+  new_contact = Contact.new({:first_name => @first_name, :last_name => @last_name, :title => @title, :job_title => @job_title })
+  new_contact.save()
+  erb(:contact)
+end
