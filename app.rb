@@ -58,6 +58,22 @@ get ('/address/:contact_id/:id/delete') do
   erb(:contact)
 end
 
+get ('/email/:contact_id/:id/delete') do
+  @contact_id = params.fetch('contact_id').to_i
+  @id = params.fetch('id').to_i
+  Email.delete(@id)
+  @contact = Contact.find(@contact_id)
+  erb(:contact)
+end
+
+get ('/phone/:contact_id/:id/delete') do
+  @contact_id = params.fetch('contact_id').to_i
+  @id = params.fetch('id').to_i
+  Phone.delete(@id)
+  @contact = Contact.find(@contact_id)
+  erb(:contact)
+end
+
 get ('/contact/:contact_id') do
   @contact_id = params.fetch("contact_id").to_i
   @contact = Contact.find(@contact_id)

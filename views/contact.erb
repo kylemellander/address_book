@@ -7,7 +7,7 @@
   <ul>
     <% Phone.find_by_contact_id(@contact.id()).each() do |phone| %>
     <li>
-      <strong><%= phone.phone_type() %></strong> - <%= phone.phone_number() %>
+      <strong><%= phone.phone_type() %></strong> - <%= phone.phone_number() %> - <a href="/phone/<%= phone.contact_id() %>/<%= phone.id() %>/delete">remove</a>
     </li>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/phone/new" method="post">
@@ -49,7 +49,7 @@
   <ul>
     <% Email.find_by_contact_id(@contact.id()).each() do |email| %>
     <li>
-      <%= email.email_type() %> - <%= email.email_address() %>
+      <%= email.email_type() %> - <%= email.email_address() %> <a href="/email/<%= email.contact_id() %>/<%= email.id() %>/delete">remove</a>
     </li>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/email/new" method="post">
