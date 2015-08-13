@@ -51,37 +51,29 @@ post ('/contact/:contact_id/email/new') do
 end
 
 get ('/address/:contact_id/:id/delete') do
-  contact_id = params.fetch('contact_id').to_i
-  id = params.fetch('id').to_i
-  Address.delete(id)
-  @contact = Contact.find(contact_id)
+  Address.delete(params.fetch('id').to_i)
+  @contact = Contact.find(params.fetch('contact_id').to_i)
   erb(:contact)
 end
 
 get ('/email/:contact_id/:id/delete') do
-  contact_id = params.fetch('contact_id').to_i
-  id = params.fetch('id').to_i
-  Email.delete(id)
-  @contact = Contact.find(contact_id)
+  Email.delete(params.fetch('id').to_i)
+  @contact = Contact.find(params.fetch('contact_id').to_i)
   erb(:contact)
 end
 
 get ('/phone/:contact_id/:id/delete') do
-  contact_id = params.fetch('contact_id').to_i
-  id = params.fetch('id').to_i
-  Phone.delete(id)
-  @contact = Contact.find(contact_id)
+  Phone.delete(params.fetch('id').to_i)
+  @contact = Contact.find(params.fetch('contact_id').to_i)
   erb(:contact)
 end
 
 get ('/contact/:contact_id') do
-  contact_id = params.fetch("contact_id").to_i
-  @contact = Contact.find(contact_id)
+  @contact = Contact.find(params.fetch("contact_id").to_i)
   erb(:contact)
 end
 
 get ('/contact/:contact_id/delete') do
-  contact_id = params.fetch("contact_id").to_i
-  Contact.delete(contact_id)
+  Contact.delete(params.fetch("contact_id").to_i)
   erb(:index)
 end
