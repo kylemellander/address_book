@@ -14,4 +14,15 @@ describe(Contact) do
       expect(new_contact.job_title()).to(eq("Ruby Developer"))
     end
   end
+
+  describe("#save, .all, .clear") do
+    it("will display all contacts, save contacts and clear contacts") do
+      expect(Contact.all()).to(eq([]))
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_contact.save()
+      expect(Contact.all()).to(eq([new_contact]))
+      Contact.clear()
+      expect(Contact.all()).to(eq([]))
+    end
+  end
 end
