@@ -7,9 +7,14 @@
   <ul>
     <% Phone.find_by_contact_id(@contact.id()).each() do |phone| %>
     <li>
-      <%= phone.phone_type() %> - <%= phone.number() %>
+      <%= phone.phone_type() %> - <%= phone.phone_number() %>
     </li>
     <% end %>
+    <form action="/contact/<%= @contact.id() %>/phone/new" method="post">
+      <input name="phone_type" type="text" placeholder="Type (ie. Home, Work)">
+      <input name="phone_number" type="text" placeholder="Phone Number (***-***-****)">
+      <button type="submit" class="btn btn-primary">Add Phone Number</button>
+    </form>
   </ul>
 </div>
 

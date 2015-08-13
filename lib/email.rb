@@ -5,8 +5,8 @@ class Email
   attr_reader(:email_type, :email_address, :contact_id, :id)
 
   define_method(:initialize) do |attributes|
-    @email_type = attributes.fetch(:email_type)
-    @email_address = attributes.fetch(:email_address)
+    @email_type = attributes.fetch(:email_type, "")
+    @email_address = attributes.fetch(:email_address, "")
     @contact_id = attributes.fetch(:contact_id)
     @@id_count += 1
     @id = @@id_count

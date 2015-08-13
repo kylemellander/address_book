@@ -5,12 +5,12 @@ class Address
   attr_reader(:address_type, :street, :city, :state, :zipcode, :contact_id, :id)
 
   define_method(:initialize) do |attributes|
-    @address_type = attributes.fetch(:address_type)
-    @street = attributes.fetch(:street)
-    @city = attributes.fetch(:city)
-    @state = attributes.fetch(:state)
-    @zipcode = attributes.fetch(:zipcode)
-    @contact_id = attributes.fetch(:contact_id)
+    @address_type = attributes.fetch(:address_type, "")
+    @street = attributes.fetch(:street, "")
+    @city = attributes.fetch(:city, "")
+    @state = attributes.fetch(:state, "")
+    @zipcode = attributes.fetch(:zipcode, "")
+    @contact_id = attributes.fetch(:contact_id, "")
     @@id_count += 1
     @id = @@id_count
   end

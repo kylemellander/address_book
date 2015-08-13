@@ -8,6 +8,9 @@ describe(Contact) do
 
   before() do
     Contact.clear()
+    Email.clear()
+    Phone.clear()
+    Address.clear()
   end
 
   describe("#initialize") do

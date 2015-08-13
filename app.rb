@@ -19,3 +19,12 @@ post ('/contact/new') do
   @contact.save()
   erb(:contact)
 end
+
+post ('/contact/:contact_id/phone/new') do
+  @contact_id = params.fetch("contact_id").to_i
+  @phone_type = params.fetch("phone_type")
+  @phone_number = params.fetch("phone_number")
+  (Phone.new({:phone_type => @phone_type, :phone_number => @phone_number, :contact_id => @contact_id})).save()
+  @contact = Contact.find(@contact_id)
+  erb(:contact)
+end
