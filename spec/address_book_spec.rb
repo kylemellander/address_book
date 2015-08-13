@@ -57,6 +57,24 @@ describe(Contact) do
       expect(new_contact.find_phones()).to(eq([new_phone]))
     end
   end
+
+  describe("#find_emails") do
+    it("finds all emails in contact") do
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_email = Email.new({:email_type => "Home", :email_address => "fake@gmail.com", :contact_id => 1})
+      new_email.save()
+      expect(new_contact.find_emails()).to(eq([new_email]))
+    end
+  end
+
+  describe("#find_addresses") do
+    it("finds all addresses in contact") do
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
+      new_address.save()
+      expect(new_contact.find_addresses()).to(eq([new_address]))
+    end
+  end
 end
 
 describe(Phone) do

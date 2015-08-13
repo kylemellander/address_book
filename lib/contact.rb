@@ -51,4 +51,12 @@ class Contact
     Phone.find_by_contact_id(@id)
   end
 
+  define_method(:find_emails) do
+    Email.find_by_contact_id(@id)
+  end
+
+  define_method(:find_addresses) do
+    Address.find_by_contact_id(@id)
+  end
+
 end
