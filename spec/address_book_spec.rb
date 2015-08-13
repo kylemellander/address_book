@@ -109,6 +109,10 @@ describe(Phone) do
 end
 
 describe(Address) do
+  before() do
+    Address.clear()
+  end
+  
   describe("#initialize") do
     it('will create a new address') do
       new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
@@ -120,5 +124,39 @@ describe(Address) do
       expect(new_address.contact_id()).to(eq(1))
     end
   end
+
+  describe('#save, .all, .clear') do
+    it("will display addresses, save addresses and clear addresses") do
+      expect(Address.all()).to(eq([]))
+      new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
+      new_address.save()
+      expect(Address.all()).to(eq([new_address]))
+      Address.clear()
+      expect(Address.all()).to(eq([]))
+    end
+  end
+
+  describe(".find_by_contact_id") do
+    it("finds phones by contact id") do
+      new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
+      new_address.save()
+      expect(Address.find_by_contact_id(1)).to(eq([new_address]))
+    end
+  end
+
+  describe(".delete") do
+    it("deletes a specific phone number") do
+      new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
+      new_address.save()
+      Address.delete(1)
+      expect(Address.all()).to(eq([]))
+      new_address.save()
+      new_address2 = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
+      new_address2.save()
+      Address.delete(2)
+      expect(Address.all()).to(eq([new_address]))
+    end
+  end
+
 
 end
