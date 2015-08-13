@@ -112,7 +112,7 @@ describe(Address) do
   before() do
     Address.clear()
   end
-  
+
   describe("#initialize") do
     it('will create a new address') do
       new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
@@ -158,5 +158,53 @@ describe(Address) do
     end
   end
 
+end
+
+describe(Email) do
+  before() do
+    Email.clear()
+  end
+
+  describe("#initialize") do
+    it('will create a new email') do
+      new_email = Email.new({:email_type => "Home", :email_address => "fake@gmail.com", :contact_id => 1})
+      expect(new_email.email_type()).to(eq("Home"))
+      expect(new_email.email_address()).to(eq("fake@gmail.com"))
+      expect(new_email.contact_id()).to(eq(1))
+    end
+  end
+
+  describe('#save, .all, .clear') do
+    it("will display email addresses, save email addresses and clear email addresses") do
+      expect(Email.all()).to(eq([]))
+      new_email = Email.new({:email_type => "Home", :email_address => "fake@gmail.com", :contact_id => 1})
+      new_email.save()
+      expect(Email.all()).to(eq([new_email]))
+      Email.clear()
+      expect(Email.all()).to(eq([]))
+    end
+  end
+
+  describe(".find_by_contact_id") do
+    it("finds phones by contact id") do
+      new_email = Email.new({:email_type => "Home", :email_address => "fake@gmail.com", :contact_id => 1})
+      new_email.save()
+      expect(Email.find_by_contact_id(1)).to(eq([new_email]))
+    end
+  end
+
+  describe(".delete") do
+    it("deletes a specific phone number") do
+      new_email = Email.new({:email_type => "Home", :email_address => "fake@gmail.com", :contact_id => 1})
+      new_email.save()
+      Email.delete(1)
+      expect(Email.all()).to(eq([]))
+      new_email.save()
+      new_email2 = Email.new({:email_type => "Home", :email_address => "fake@gmail.com", :contact_id => 1})
+      new_email2.save()
+      Email.delete(2)
+      expect(Email.all()).to(eq([new_email]))
+    end
+  end
 
 end
