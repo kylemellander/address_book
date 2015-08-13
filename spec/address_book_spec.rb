@@ -61,4 +61,15 @@ describe(Phone) do
     end
   end
 
+  describe('#save, .all, .clear') do
+    it("will display phone numbers, save phone numbers and clear phone numbers") do
+      expect(Phone.all()).to(eq([]))
+      new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+      new_phone.save()
+      expect(Phone.all()).to(eq([new_phone]))
+      Phone.clear()
+      expect(Phone.all()).to(eq([]))
+    end
+  end
+
 end
