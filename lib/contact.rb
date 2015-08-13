@@ -15,6 +15,7 @@ class Contact
   end
 
   define_singleton_method(:all) do
+    Contact.sort_contacts()
     @@contacts
   end
 
@@ -62,6 +63,10 @@ class Contact
 
   define_method(:find_addresses) do
     Address.find_by_contact_id(@id)
+  end
+
+  define_singleton_method(:sort_contacts) do
+    @@contacts.sort!{|a,b| a.last_name().downcase <=> b.last_name().downcase}
   end
 
 end

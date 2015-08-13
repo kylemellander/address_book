@@ -78,6 +78,19 @@ describe(Contact) do
       expect(new_contact.find_addresses()).to(eq([new_address]))
     end
   end
+
+  describe(".sort_contacts") do
+    it("sorts the contacts by last name, then first name") do
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_contact2 = Contact.new({:first_name => "Fustin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_contact3 = Contact.new({:first_name => "Justin", :last_name => "Mcott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_contact.save()
+      new_contact2.save()
+      new_contact3.save()
+      Contact.sort_contacts()
+      expect(Contact.all()).to(eq([new_contact3, new_contact2, new_contact]))
+    end
+  end
 end
 
 describe(Phone) do
