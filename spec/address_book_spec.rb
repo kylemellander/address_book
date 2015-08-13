@@ -5,6 +5,11 @@ require("email")
 require("phone")
 
 describe(Contact) do
+
+  before() do
+    Contact.clear()
+  end
+
   describe("#initialize") do
     it("creates a new contact with proper parameters") do
       new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
@@ -23,6 +28,15 @@ describe(Contact) do
       expect(Contact.all()).to(eq([new_contact]))
       Contact.clear()
       expect(Contact.all()).to(eq([]))
+    end
+  end
+
+  describe(".find") do
+    it("finds a contact by id") do
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_contact.save()
+      expect(Contact.find(1)).to(eq(new_contact))
+      expect(Contact.find(2)).to(eq(nil))
     end
   end
 end
