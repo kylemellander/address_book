@@ -55,4 +55,14 @@ class Address
     google_maps_link.concat("+" + @city + "+" + @state + "+" + @zipcode)
   end
 
+  define_singleton_method(:delete_by_contact) do |contact_id|
+    revised_addresses = []
+    @@addresses.each() do |address|
+      if address.contact_id() != contact_id
+        revised_addresses.push(address)
+      end
+    end
+    @@addresses = revised_addresses
+  end
+
 end

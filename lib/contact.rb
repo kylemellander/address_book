@@ -42,8 +42,13 @@ class Contact
     @@contacts.each() do |contact|
       if contact.id() != id
         revised_contacts.push(contact)
+      else
+        Phone.delete_by_contact(contact.id())
+        Email.delete_by_contact(contact.id())
+        Address.delete_by_contact(contact.id())
       end
     end
+
     @@contacts = revised_contacts
   end
 

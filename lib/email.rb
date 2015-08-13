@@ -45,4 +45,14 @@ class Email
     @@emails = revised_emails
   end
 
+  define_singleton_method(:delete_by_contact) do |contact_id|
+    revised_emails = []
+    @@emails.each() do |email|
+      if email.contact_id() != contact_id
+        revised_emails.push(email)
+      end
+    end
+    @@emails = revised_emails
+  end
+
 end

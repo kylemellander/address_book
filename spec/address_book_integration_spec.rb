@@ -38,7 +38,7 @@ describe("/", {:type => :feature}) do
     fill_in('first_name', :with => "Justin")
     fill_in('last_name', :with => "Scott")
     click_button('Add Contact')
-    fill_in('phone_type', :with => "Home")
+    select('Home', :from => 'phone_type')
     fill_in('phone_number', :with => "503-555-5555")
     click_button('Add Phone Number')
     expect(page).to have_content("503-555-5555")

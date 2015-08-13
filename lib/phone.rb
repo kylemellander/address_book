@@ -45,7 +45,7 @@ class Phone
     @@phones = revised_phones
   end
 
-  define_singleton_method(:delete_by_content) do |contact_id|
+  define_singleton_method(:delete_by_contact) do |contact_id|
     revised_phones = []
     @@phones.each() do |phone|
       if phone.contact_id() != contact_id
