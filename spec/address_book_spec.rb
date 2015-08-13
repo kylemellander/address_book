@@ -49,3 +49,16 @@ describe(Contact) do
     end
   end
 end
+
+describe(Phone) do
+
+  describe('#initialize') do
+    it('creates a new phone number with proper parameters') do
+      new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+      expect(new_phone.phone_type()).to(eq("Home"))
+      expect(new_phone.phone_number()).to(eq("503-555-5555"))
+      expect(new_phone.contact_id()).to(eq(1))
+    end
+  end
+
+end
