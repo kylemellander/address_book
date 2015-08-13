@@ -39,4 +39,13 @@ describe(Contact) do
       expect(Contact.find(2)).to(eq(nil))
     end
   end
+
+  describe(".delete") do
+    it("will delete selected contact") do
+      new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+      new_contact.save()
+      Contact.delete(1)
+      expect(Contact.all()).to(eq([]))
+    end
+  end
 end

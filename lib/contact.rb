@@ -37,4 +37,14 @@ class Contact
     found_contact
   end
 
+  define_singleton_method(:delete) do |id|
+    revised_contacts = []
+    @@contacts.each() do |contact|
+      if contact.id() != id
+        revised_contacts.push(contact)
+      end
+    end
+    @@contacts = revised_contacts
+  end
+
 end
