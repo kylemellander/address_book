@@ -4,11 +4,11 @@
 <div class="row jk-phones">
   <h3>Phone Numbers:</h3>
 
-  <ul>
+  <ul><% i=1 %>
     <% Phone.find_by_contact_id(@contact.id()).each() do |phone| %>
-    <li>
+    <li<% if !i.odd?() %> class="even"<% end %>>
       <strong><%= phone.phone_type() %></strong> - <%= phone.phone_number() %><a href="/phone/<%= phone.contact_id() %>/<%= phone.id() %>/delete"> <span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a>
-    </li>
+    </li><% i+=1 %>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/phone/new" method="post">
       <select name="phone_type">
@@ -27,15 +27,15 @@
 <div class="row jk-addresses">
   <h3>Addresses:</h3>
 
-  <ul>
+  <ul><% i=1 %>
     <% Address.find_by_contact_id(@contact.id()).each() do |address| %>
-    <li>
+    <li<% if !i.odd?() %> class="even"<% end %>>
       <strong><%= address.address_type() %></strong>
       <p>
         <a href="<%= address.google_maps_link() %>" target="_blank"><%= address.street() %><br>
         <%= address.city() %>, <%= address.state() %> <%= address.zipcode() %></a> <a href="/address/<%= address.contact_id() %>/<%= address.id() %>/delete"> <span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a>
       </p>
-    </li>
+    </li><% i+=1 %>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/address/new" method="post">
       <select name="address_type">
@@ -54,11 +54,11 @@
 <div class="row jk-emails">
   <h3>Email Addresses:</h3>
 
-  <ul>
+  <ul><% i=1 %>
     <% Email.find_by_contact_id(@contact.id()).each() do |email| %>
-    <li>
+    <li<% if !i.odd?() %> class="even"<% end %>>
       <strong><%= email.email_type() %></strong> - <a href="mailto:<%= email.email_address() %>"><%= email.email_address() %></a> <a href="/email/<%= email.contact_id() %>/<%= email.id() %>/delete"> <span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a>
-    </li>
+    </li><% i+=1 %>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/email/new" method="post">
       <select name="email_type">

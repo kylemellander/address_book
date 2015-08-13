@@ -1,6 +1,10 @@
 body {
   background:#333;
   font-size:14px;
+  font-family:Montserrat, sans-serif;
+}
+h1, h2, h3, h4, h5 {
+  font-family:Oswald, sans-serif;
 }
 h1 a {
   color:#fff;
@@ -8,6 +12,16 @@ h1 a {
 h1 a:hover {
   color:#ddd;
   text-decoration:none;
+}
+ul {
+  padding-left:0;
+}
+li {
+  width:100%;
+  border-radius:5px;
+}
+li.even {
+  background:#ddd;
 }
 .jk-main-content, .jk-phones, .jk-addresses, .jk-emails {
   background:#fff;

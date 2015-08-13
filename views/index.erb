@@ -2,8 +2,10 @@
   <div class="col-sm-9 jk-main-content">
     <h3>All Contacts</h3>
     <ul>
+      <% i=1 %>
       <% Contact.all().each() do |contact| %>
-        <li><a href="/contact/<%= contact.id() %>"><%= contact.first_name() %> <%= contact.last_name() %></a> <a href="/contact/<%= contact.id() %>/delete"><span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a></li>
+        <li<% if !i.odd?() %> class="even"<% end %>><a href="/contact/<%= contact.id() %>"><%= contact.first_name() %> <%= contact.last_name() %></a> <a href="/contact/<%= contact.id() %>/delete"><span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a></li>
+        <% i+=1 %>
       <% end %>
     </ul>
   </div>
