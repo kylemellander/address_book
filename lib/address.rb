@@ -48,4 +48,11 @@ class Address
     @@addresses = revised_addresses
   end
 
+  define_method(:google_maps_link) do
+    google_maps_link = "https://www.google.com/maps/place/"
+    street_formatted = @street.gsub(' ', "+")
+    google_maps_link.concat(street_formatted)
+    google_maps_link.concat("+" + @city + "+" + @state + "+" + @zipcode)
+  end
+
 end

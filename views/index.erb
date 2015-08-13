@@ -1,16 +1,17 @@
 <div class="row">
-  <div class="col-sm-9">
+  <div class="col-sm-9 jk-main-content">
+    <h3>All Contacts</h3>
     <ul>
       <% Contact.all().each() do |contact| %>
-        <li><a href="/contact/<%= contact.id() %>"><%= contact.first_name() %> <%= contact.last_name() %></a></li>
+        <li><a href="/contact/<%= contact.id() %>"><%= contact.first_name() %> <%= contact.last_name() %></a> <a href="/contact/<%= contact.id() %>/delete"><span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a></li>
       <% end %>
     </ul>
   </div>
-  <div class="col-sm-3">
-    <h3>Add a contact</h3>
+  <div class="col-sm-3 jk-sidebar">
+    <h3 class="jk-sidebar-title">Add a contact</h3>
     <form action="/contact/new" method="post">
-      <input type="text" name="title" placeholder="Title (ie. Mr., Dr.)">
-      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="title" placeholder="Title" size="4">
+      <input type="text" name="first_name" placeholder="First Name" size="13">
       <input type="text" name="last_name" placeholder="Last Name">
       <input type="text" name="job_title" placeholder="Job Title">
       <button type="submit" class="btn btn-primary">Add Contact</button>

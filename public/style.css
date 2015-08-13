@@ -1,0 +1,74 @@
+body {
+  background:#333;
+  font-size:14px;
+}
+h1 a {
+  color:#fff;
+}
+h1 a:hover {
+  color:#ddd;
+  text-decoration:none;
+}
+.jk-main-content, .jk-phones, .jk-addresses, .jk-emails {
+  background:#fff;
+  border-radius: 5px;
+  padding:10px;
+  font-size:1.2em;
+}
+.jk-main-content {
+  min-height:400px;
+}
+a .bk-remove {
+  color:red;
+  font-size:.8em;
+}
+.jk-main-content li {
+  list-style:none;
+  padding: 5px;
+}
+.jk-addresses li {
+  list-style:none;
+  padding: 5px;
+}
+
+.jk-phones li {
+  list-style: none;
+  padding: 5px;
+}
+
+.jk-emails li {
+  list-style: none;
+  padding: 5px;
+}
+.jk-phones, .jk-emails, .jk-addresses {
+  margin:10px;
+}
+h3.jk-sidebar-title {
+  color:#fff;
+}
+.jk-sidebar input {
+  margin:5px 2px;
+  border-radius: 2px;
+  border:0;
+  padding:3px;
+}
+.jk-sidebar button {
+  margin-top:4px;
+  display:block;
+}
+
+a:hover {
+  color: #000;
+}
+
+h2 {
+  color:#fff;
+}
+
+.jk-addresses input {
+  margin:5px;
+}
+h5 {
+  color:#fff;
+  font-style:italic;
+}

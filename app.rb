@@ -79,3 +79,9 @@ get ('/contact/:contact_id') do
   @contact = Contact.find(@contact_id)
   erb(:contact)
 end
+
+get ('/contact/:contact_id/delete') do
+  @contact_id = params.fetch("contact_id").to_i
+  Contact.delete(@contact_id)
+  erb(:index)
+end

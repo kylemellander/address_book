@@ -1,5 +1,5 @@
 <h2><%= @contact.title() %> <%= @contact.first_name() %> <%= @contact.last_name() %></h2>
-<h4><%= @contact.job_title() %></h4>
+<h5><%= @contact.job_title() %></h5>
 
 <div class="row jk-phones">
   <h3>Phone Numbers:</h3>
@@ -7,11 +7,17 @@
   <ul>
     <% Phone.find_by_contact_id(@contact.id()).each() do |phone| %>
     <li>
-      <strong><%= phone.phone_type() %></strong> - <%= phone.phone_number() %> - <a href="/phone/<%= phone.contact_id() %>/<%= phone.id() %>/delete">remove</a>
+      <strong><%= phone.phone_type() %></strong> - <%= phone.phone_number() %><a href="/phone/<%= phone.contact_id() %>/<%= phone.id() %>/delete"> <span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a>
     </li>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/phone/new" method="post">
-      <input name="phone_type" type="text" placeholder="Type (ie. Home, Work)">
+      <select name="phone_type">
+        <option value="Home">Home</option>
+        <option value="Work">Work</option>
+        <option value="Cell">Cell</option>
+        <option value="Pager">Pager</option>
+        <option value="Fax">Fax</option>
+      </select>
       <input name="phone_number" type="text" placeholder="Phone Number (***-***-****)">
       <button type="submit" class="btn btn-primary">Add Phone Number</button>
     </form>
@@ -26,18 +32,20 @@
     <li>
       <strong><%= address.address_type() %></strong>
       <p>
-        <%= address.street() %><br>
-        <%= address.city() %>, <%= address.state() %> <%= address.zipcode() %>
+        <a href="<%= address.google_maps_link() %>" target="_blank"><%= address.street() %><br>
+        <%= address.city() %>, <%= address.state() %> <%= address.zipcode() %></a> <a href="/address/<%= address.contact_id() %>/<%= address.id() %>/delete"> <span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a>
       </p>
-      <a href="/address/<%= address.contact_id() %>/<%= address.id() %>/delete">remove</a>
     </li>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/address/new" method="post">
-      <input name="address_type" type="text" placeholder="Type (ie. Home, Work)">
-      <input name="street" type="text" placeholder="Address (123 Main St)">
-      <input name="city" type="text" placeholder="City">
-      <input name="state" type="text" placeholder="State">
-      <input name="zipcode" type="text" placeholder="Zipcode">
+      <select name="address_type">
+        <option value="Home">Home</option>
+        <option value="Work">Work</option>
+        <option value="Vacation Home">Vacation Home</option>
+      </select>
+      <input name="street" type="text" placeholder="Address (123 Main St)" size="30"><br>
+      <input name="city" type="text" placeholder="City">, <input name="state" type="text" size="5" placeholder="State">
+      <input name="zipcode" type="text" placeholder="Zipcode" size="12"><br>
       <button type="submit" class="btn btn-primary">Add Address</button>
     </form>
   </ul>
@@ -49,11 +57,15 @@
   <ul>
     <% Email.find_by_contact_id(@contact.id()).each() do |email| %>
     <li>
-      <%= email.email_type() %> - <%= email.email_address() %> <a href="/email/<%= email.contact_id() %>/<%= email.id() %>/delete">remove</a>
+      <strong><%= email.email_type() %></strong> - <a href="mailto:<%= email.email_address() %>"><%= email.email_address() %></a> <a href="/email/<%= email.contact_id() %>/<%= email.id() %>/delete"> <span class="glyphicon glyphicon-remove bk-remove" aria-hidden="true"></span></a>
     </li>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/email/new" method="post">
-      <input name="email_type" type="text" placeholder="Type (ie. Home, Work)">
+      <select name="email_type">
+        <option value="Home">Home</option>
+        <option value="Work">Work</option>
+        <option value="Other">Other</option>
+      </select>
       <input name="email_address" type="text" placeholder="Email Address">
       <button type="submit" class="btn btn-primary">Add Email Address</button>
     </form>
