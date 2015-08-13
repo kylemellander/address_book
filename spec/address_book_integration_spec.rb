@@ -17,4 +17,12 @@ describe("/", {:type => :feature}) do
     click_link('Address Book')
     expect(page).to have_content("Justin Scott")
   end
+
+  it('displays contact info on contact page after contact is created') do
+    visit('/')
+    fill_in('first_name', :with => "Justin")
+    fill_in('last_name', :with => "Scott")
+    click_button('Add Contact')
+    expect(page).to have_content("Justin Scott")
+  end
 end
