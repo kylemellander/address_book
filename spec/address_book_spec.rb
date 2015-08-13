@@ -102,7 +102,22 @@ describe(Phone) do
       new_phone2 = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
       new_phone2.save()
       Phone.delete(2)
-      expect(Phone.all()).to(eq([new_phone]))        
+      expect(Phone.all()).to(eq([new_phone]))
+    end
+  end
+
+end
+
+describe(Address) do
+  describe("#initialize") do
+    it('will create a new address') do
+      new_address = Address.new({:address_type => "Home", :street => "505 S 5th St", :city => "Portland", :state => "Oregon", :zipcode => "98989", :contact_id => 1})
+      expect(new_address.address_type()).to(eq("Home"))
+      expect(new_address.street()).to(eq("505 S 5th St"))
+      expect(new_address.city()).to(eq("Portland"))
+      expect(new_address.state()).to(eq("Oregon"))
+      expect(new_address.zipcode()).to(eq("98989"))
+      expect(new_address.contact_id()).to(eq(1))
     end
   end
 
