@@ -48,6 +48,13 @@ describe(Contact) do
       expect(Contact.all()).to(eq([]))
     end
   end
+
+  # describe("#find_phones") do
+  #   new_contact = Contact.new({:first_name => "Justin", :last_name => "Scott", :title => "Dr.", :job_title => "Ruby Developer"})
+  #   new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+  #   new_phone.save()
+  #   expect(new_contact.find_phones()).to(eq([new_phone]))
+  # end
 end
 
 describe(Phone) do
@@ -69,6 +76,14 @@ describe(Phone) do
       expect(Phone.all()).to(eq([new_phone]))
       Phone.clear()
       expect(Phone.all()).to(eq([]))
+    end
+  end
+
+  describe(".find_by_contact_id") do
+    it("finds phones by contact id") do
+      new_phone = Phone.new({:phone_type => "Home", :phone_number => "503-555-5555", :contact_id => 1})
+      new_phone.save()
+      expect(Phone.find_by_contact_id(1)).to(eq([new_phone]))
     end
   end
 
