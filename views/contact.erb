@@ -7,7 +7,7 @@
   <ul>
     <% Phone.find_by_contact_id(@contact.id()).each() do |phone| %>
     <li>
-      <%= phone.phone_type() %> - <%= phone.phone_number() %>
+      <strong><%= phone.phone_type() %></strong> - <%= phone.phone_number() %>
     </li>
     <% end %>
     <form action="/contact/<%= @contact.id() %>/phone/new" method="post">
@@ -20,8 +20,42 @@
 
 <div class="row jk-addresses">
   <h3>Addresses:</h3>
+
+  <ul>
+    <% Address.find_by_contact_id(@contact.id()).each() do |address| %>
+    <li>
+      <strong><%= address.address_type() %></strong>
+      <p>
+        <%= address.street() %><br>
+        <%= address.city() %>, <%= address.state() %> <%= address.zipcode() %>
+      </p>
+      <a href="/address/<%= address.contact_id() %>/<%= address.id() %>/delete">remove</a>
+    </li>
+    <% end %>
+    <form action="/contact/<%= @contact.id() %>/address/new" method="post">
+      <input name="address_type" type="text" placeholder="Type (ie. Home, Work)">
+      <input name="street" type="text" placeholder="Address (123 Main St)">
+      <input name="city" type="text" placeholder="City">
+      <input name="state" type="text" placeholder="State">
+      <input name="zipcode" type="text" placeholder="Zipcode">
+      <button type="submit" class="btn btn-primary">Add Address</button>
+    </form>
+  </ul>
 </div>
 
 <div class="row jk-emails">
   <h3>Email Addresses:</h3>
+
+  <ul>
+    <% Email.find_by_contact_id(@contact.id()).each() do |email| %>
+    <li>
+      <%= email.email_type() %> - <%= email.email_address() %>
+    </li>
+    <% end %>
+    <form action="/contact/<%= @contact.id() %>/email/new" method="post">
+      <input name="email_type" type="text" placeholder="Type (ie. Home, Work)">
+      <input name="email_address" type="text" placeholder="Email Address">
+      <button type="submit" class="btn btn-primary">Add Email Address</button>
+    </form>
+  </ul>
 </div>
